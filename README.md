@@ -288,7 +288,7 @@ DBに蓄積することで、他の全機能（ダッシュボード表示・通
 ```
 trafic-radar/
 ├── .gitignore             # Git 除外設定
-├── GEMINI.md              # 開発メモ・運用メモ | Gemini-CLI
+├── GEMINI.md              # 開発メモ・運用メモ（Gemini CLIのプロトコル定義）
 └── README.md              # プロジェクト概要・設計資料
 ```
 
