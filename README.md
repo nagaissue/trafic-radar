@@ -279,20 +279,32 @@ DBに蓄積することで、他の全機能（ダッシュボード表示・通
 
 ---
 
-## 📂 ディレクトリ構成（予定）
+## 📂 ディレクトリ構成
+
+### 現在の構成
 
 ```
-transit-watch/
-├── backend/                # Spring Boot アプリケーション
+trafic-radar/
+├── .git/                  # Git 管理情報
+├── .gitignore             # Git 除外設定
+├── GEMINI.md              # 開発メモ・運用メモ
+└── README.md              # プロジェクト概要・設計資料
+```
+
+### 今後の予定
+
+```
+trafic-radar/
+├── backend/               # Spring Boot アプリケーション
 │   ├── src/main/java/...
 │   ├── src/main/resources/db/migration/  # Flyway マイグレーション
 │   └── src/test/java/...
-├── frontend/                # React + TypeScript (Vite) アプリケーション
+├── frontend/              # React + TypeScript (Vite) アプリケーション
 │   ├── src/
 │   └── package.json
-├── infra/                   # AWS CDK (Java) コード
-├── docker-compose.yml       # ローカル開発環境
-├── .github/workflows/       # GitHub Actions 定義
+├── infra/                 # AWS CDK (Java) コード
+├── docker-compose.yml     # ローカル開発環境
+├── .github/workflows/     # GitHub Actions 定義
 └── README.md
 ```
 
