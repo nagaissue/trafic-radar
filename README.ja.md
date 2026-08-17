@@ -1,6 +1,10 @@
 # 🚋 trafic-radar（交通遅延・運行情報集約アプリ）
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-<br>
+
+<p>
+  <a href="README.en.md">English</a> |
+  <a href="README.ja.md">日本語</a>
+</p>
 公共交通機関のオープンデータを取り込み、遅延・運行情報を集約して通知するWebアプリケーションです。<br>
 能開大 生産電子情報システム技術科1年 川崎、永井によるJavaモダンアプリ開発プロジェクトです。<br>
 
@@ -424,19 +428,7 @@ npm run dev
 - GTFS-RT や外部APIとの連携部分は WireMock でモックし、外部サービスに依存せずテスト
 - GitHub Actions で push / PR 時に自動実行
 
----
 
-## 📅 開発スケジュール（目安・2〜3ヶ月）
-
-| 期間 | 内容 |
-|---|---|
-| 0週目 | スプリント0（環境構築・GTFSデータ調査・雛形作成・ER図設計） |
-| 1〜2週目 | 要件定義、画面設計、環境構築の仕上げ |
-| 3〜6週目 | コア機能実装（GTFS取得バッチ、認証(JWT)、CRUD、Flywayマイグレーション） |
-| 7〜9週目 | 非同期処理（SQS連携）、通知機能(SES/Slack/Charwork)、ダッシュボードUI(地図表示)磨き込み |
-| 10週目〜 | CI/CD整備、README・デモ動画作成、就活準備 |
-
----
 
 ## 🔭 今後の展望
 
@@ -444,14 +436,17 @@ npm run dev
 - Firebase Cloud Messagingによるプッシュ通知対応
 - 遅延傾向の簡易分析（曜日・天候別の集計、ダッシュボードでの可視化）
 
----
 
-## 👤 チームメンバー
 
-| 氏名 | 担当 |
-|---|---|
-| 川崎　一晴 |  |
-| 永井　秀汰 |  |
+## 参考文献
+
+- GTFS（General Transit Feed Specification）: https://developers.google.com/transit/gtfs
+- GTFS Realtime: https://developers.google.com/transit/gtfs-realtime
+- gtfs-realtime-bindings（Java）: https://github.com/MobilityData/gtfs-realtime-bindings
+- Spring Boot: https://spring.io/projects/spring-boot
+- MapLibre GL JS: https://maplibre.org
+- OpenAPI: https://www.openapis.org
+- AWS ドキュメント（SQS/SES/RDS）: https://docs.aws.amazon.com/
 
 ---
 
