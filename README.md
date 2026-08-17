@@ -1,9 +1,8 @@
 # 🚋 trafic-radar（交通遅延・運行情報集約アプリ）
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<br>
 公共交通機関のオープンデータを取り込み、遅延・運行情報を集約して通知するWebアプリケーションです。<br>
 能開大 生産電子情報システム技術科1年 川崎、永井によるJavaモダンアプリ開発プロジェクトです。<br>
-※内容は曖昧であるため修正中<br>
-※各項目内容ごとにメンバーのレビューが必要
 
 ---
 
