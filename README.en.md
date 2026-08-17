@@ -393,8 +393,8 @@ Steps
 
 ```bash
 # Clone
-git clone https://github.com/<org>/transit-watch.git
-cd transit-watch
+git clone https://github.com/<org>/trafic-radar.git
+cd trafic-radar
 
 # Start DB & services
 docker compose up -d

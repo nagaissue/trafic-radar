@@ -394,8 +394,8 @@ GitHub Copilot CLI、Gemini CLI、その他のAI支援ツールを活用する�
 ### 手順
 ```bash
 # リポジトリをクローン
-git clone https://github.com/<org>/transit-watch.git
-cd transit-watch
+git clone https://github.com/<org>/trafic-radar.git
+cd trafic-radar
 
 # DB・関連サービスをコンテナで起動
 docker compose up -d

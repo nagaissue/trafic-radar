@@ -1,4 +1,4 @@
-# 🚋 trafic-radar (transit-watch) - AI 開発・連携指示書 (GEMINI.md)
+# 🚋 trafic-radar - AI 開発・連携指示書 (GEMINI.md)
 
 本ファイルは、本プロジェクトにおける AI（Gemini）および開発者が一貫した設計・実装基準、ディレクトリ構成、および開発プロセスを遵守するための指示書です。本プロジェクトは、新規（グリーンフィールド）開発の「スプリント 0（環境構築・着手準備）」フェーズにあります。
 
@@ -18,7 +18,7 @@
 
 ### ディレクトリ構成（予定）
 ```
-transit-watch/ (リポジトリルート)
+trafic-radar/ (リポジトリルート)
 ├── backend/                # Spring Boot アプリケーション (Java 21, Gradle)
 ├── frontend/               # React + TypeScript (Vite) アプリケーション
 ├── infra/                  # AWS CDK (Java) コード
