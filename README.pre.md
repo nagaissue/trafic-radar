@@ -282,6 +282,12 @@ DBに蓄積することで、他の全機能（ダッシュボード表示・通
                               └→ S3(静的アセット) / SQS / EventBridge
 ```
 
+```mermaid
+graph TD
+  GTFS --> Spring-Scheduler
+  GTFS --> Spring-Scheduler
+```
+
 ---
 
 ## 📂 ディレクトリ構成
