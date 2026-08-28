@@ -254,8 +254,9 @@ DBに蓄積することで、他の全機能（ダッシュボード表示・通
 
 ---
 
-## 🏗 アーキテクチャ概要
+## アーキテクチャ概要
 
+<!--
 ```
 [GTFS(静的ZIP)]        [GTFS-RT(Protocol Buffers)]      [JR北海道 運行情報]
       │                         │                              │
@@ -281,11 +282,20 @@ DBに蓄積することで、他の全機能（ダッシュボード表示・通
 本番想定: CloudFront → ALB → ECS(Fargate) → RDS
                               └→ S3(静的アセット) / SQS / EventBridge
 ```
+-->
 
 ```mermaid
 graph TD
-  GTFS --> Spring-Scheduler
-  GTFS --> Spring-Scheduler
+  GTFS/静的ZIP --> 取得バッチ/Spring_Scheduler
+  GTFS-RT/Protocol_Buffers --> 取得バッチ/Spring_Scheduler
+  JR北海道_運行情報 --> 取得バッチ/Spring_Scheduler
+  取得バッチ/Spring_Scheduler --> SQS
+  SQS --> Spring_Boot_API_Server
+  Spring_Boot_API_Server <--> RDS/PostgreSQL
+  Spring_Boot_API_Server -- REST_API/OpenAPI --> React+TypeScript_SPA/Vite
+  React+TypeScript_SPA/Vite --> MapLibre/地図表示
+  React+TypeScript_SPA/Vite --> TanStack/ポーリング
+  SQS --> 通知判定 --> SES/Slack/Chatwork_API
 ```
 
 ---
