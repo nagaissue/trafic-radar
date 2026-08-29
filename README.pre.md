@@ -7,22 +7,22 @@ Javaモダンアプリの開発プロジェクトです。
 
 ## 目次
 
-1. [概要](#-概要)
-2. [機能](#-機能)
-3. [機能間の関係図](#-機能間の関係図)
-4. [技術スタック](#-技術スタック)
-5. [アーキテクチャ概要](#-アーキテクチャ概要)
-6. [ディレクトリ構成](#-ディレクトリ構成)
-7. [AI活用開発ポリシー](#-ai活用開発ポリシー)
-8. [ToDoリスト](#-todoリスト)
-9. [セットアップ手順](#-セットアップ手順ローカル開発)
-10. [開発の進め方](#-開発の進め方)
-11. [テスト戦略](#-テスト戦略)
-12. [開発スケジュール](#-開発スケジュール目安23ヶ月)
-13. [今後の展望](#-今後の展望)
-14. [開発メンバー](#-開発メンバー)
-15. [参考文献](#-参考文献)
-16. [ライセンス](#-ライセンス)
+1. [概要](#概要)
+2. [機能](#機能)
+3. [機能間の関係図](#機能間の関係図)
+4. [技術スタック](#技術スタック)
+5. [アーキテクチャ概要](#アーキテクチャ概要)
+6. [ディレクトリ構成](#ディレクトリ構成)
+7. [AI活用開発ポリシー](#ai活用開発ポリシー)
+8. [ToDoリスト](#todoリスト)
+9. [セットアップ手順](#セットアップ手順ローカル開発)
+10. [開発の進め方](#開発の進め方)
+11. [テスト戦略](#テスト戦略)
+12. [開発スケジュール](#開発スケジュール目安23ヶ月)
+13. [今後の展望](#今後の展望)
+14. [開発メンバー](#開発メンバー)
+15. [参考文献](#参考文献)
+16. [ライセンス](#ライセンス)
 
 ---
 
@@ -163,7 +163,7 @@ DBに蓄積することで、他の全機能（ダッシュボード表示・通
 
 ---
 
-## 🔗 機能間の関係図
+## 機能間の関係図
 
 ```
 [1. 運行情報の自動収集]
@@ -181,7 +181,7 @@ DBに蓄積することで、他の全機能（ダッシュボード表示・通
 
 ---
 
-## 🛠 技術スタック
+## 技術スタック
 
 ### バックエンド
 | 項目 | 技術 |
@@ -285,22 +285,54 @@ DBに蓄積することで、他の全機能（ダッシュボード表示・通
 -->
 
 ```mermaid
-graph TD
-  GTFS/静的ZIP --> 取得バッチ/Spring_Scheduler
-  GTFS-RT/Protocol_Buffers --> 取得バッチ/Spring_Scheduler
-  JR北海道_運行情報 --> 取得バッチ/Spring_Scheduler
-  取得バッチ/Spring_Scheduler --> SQS
-  SQS --> Spring_Boot_API_Server
-  Spring_Boot_API_Server <--> RDS/PostgreSQL
-  Spring_Boot_API_Server -- REST_API/OpenAPI --> React+TypeScript_SPA/Vite
-  React+TypeScript_SPA/Vite --> MapLibre/地図表示
-  React+TypeScript_SPA/Vite --> TanStack/ポーリング
-  SQS --> 通知判定 --> SES/Slack/Chatwork_API
+graph TB
+    %% レイヤーの定義
+    subgraph Presentation["1. プレゼンテーション層 (UI/UX)"]
+        React["React + TypeScript SPA (Vite)"]
+        MapLibre["MapLibre (地図表示)"]
+        TanStack["TanStack Query (ポーリング)"]
+        
+        React --> MapLibre
+        React --> TanStack
+    end
+
+    subgraph Application["2. アプリケーション / ドメイン層 (ビジネスロジック)"]
+        APIServer["Spring Boot API Server"]
+        Batch["取得バッチ (Spring Scheduler)"]
+        SQS["Amazon SQS (非同期キュー)"]
+        NotifyProcess["通知判定処理"]
+
+        %% アプリケーション層内のデータの流れ
+        Batch --> SQS
+        SQS --> APIServer
+        SQS --> NotifyProcess
+    end
+
+    subgraph Infrastructure["3. データ / インフラストラクチャ層 (外部連携・永続化)"]
+        subgraph ExternalData["外部データソース"]
+            GTFS_Static["GTFS (静的ZIP)"]
+            GTFS_RT["GTFS-RT (Protocol Buffers)"]
+            JR_Data["JR北海道 運行情報"]
+        end
+
+        DB[("RDS (PostgreSQL)")]
+
+        subgraph ExternalNotify["通知サービス"]
+            SES["Amazon SES"]
+            Slack["Slack / Chatwork API"]
+        end
+    end
+
+    %% レイヤー間の相互作用（依存関係・データの流れ）
+    ExternalData -->|定期取得| Batch
+    Presentation <-->|REST API / OpenAPI| APIServer
+    APIServer <-->|データ読み書き| DB
+    NotifyProcess -->|メッセージ送信| ExternalNotify
 ```
 
 ---
 
-## 📂 ディレクトリ構成
+## ディレクトリ構成
 
 ### 今後の予定
 
@@ -321,7 +353,7 @@ trafic-radar/
 
 ---
 
-## 🤖 AI活用開発ポリシー
+## AI活用開発ポリシー
 
 GitHub Copilot CLI、Gemini CLI、その他のAI支援ツールを活用する際は、以下の方針を守る。
 
@@ -347,7 +379,7 @@ GitHub Copilot CLI、Gemini CLI、その他のAI支援ツールを活用する�
 
 ---
 
-## 🏁 ToDoリスト
+## ToDoリスト
 
 設計より先に「本物のデータの形」を知っておくことが重要なため、DB設計より前にGTFSデータに触れる工程を先頭に置いています。
 
@@ -388,7 +420,7 @@ GitHub Copilot CLI、Gemini CLI、その他のAI支援ツールを活用する�
 
 ---
 
-## 🚀 セットアップ手順（ローカル開発）
+## セットアップ手順（ローカル開発）
 
 ### 前提
 - Docker / Docker Compose
@@ -416,7 +448,7 @@ npm run dev
 
 ---
 
-## 👥 開発の進め方
+## 開発手順
 
 - タスク管理：GitHub Issues + Projects
 - ブランチ運用：`main` / `develop` / `feature/*`（Git Flow 簡易版）
@@ -425,7 +457,7 @@ npm run dev
 
 ---
 
-## ✅ テスト戦略
+## テスト戦略
 
 - ビジネスロジックは JUnit5 + Mockito による単体テストでカバー
 - DB を含む結合テストは Testcontainers を用いて本番に近い環境で検証
@@ -434,7 +466,7 @@ npm run dev
 
 
 
-## 🔭 今後の展望
+## 今後の展望
 
 - PostGISを用いた高度な位置検索（近隣路線・駅の検索）
 - Firebase Cloud Messagingによるプッシュ通知対応
