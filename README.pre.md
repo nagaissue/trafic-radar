@@ -504,6 +504,7 @@ npm run dev
 ## 開発メンバー
 
 - nagaissue
+- 	icche0725i-cyber
 
 ## 参考文献
 
