@@ -1,5 +1,1 @@
-# Repository Guidelines
-
-- 日本語で回答する。
-- チャット履歴はHANDOVER.mdへ追記する。
-- 新規成果物を作成する前に確認を取る。既存ファイルの修正は、ユーザーの依頼範囲内で行ってよい。
+[AGENTS.md](AGENTS.md)
