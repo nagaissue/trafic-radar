@@ -1,1 +1,1 @@
-[READMEのプレ版](README.pre.md)
+[READMEのα版](README.alpha.md)
